@@ -12,12 +12,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Endpoint per la home
-app.get('/', (req, res) => {
+app.get('https://form-delta-seven.vercel.app', (req, res) => {
   res.send('Benvenuto nella home!');
 });
 
 // Endpoint per il form
-app.get('/form', (req, res) => {
+app.get('https://form-delta-seven.vercel.app/form', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
