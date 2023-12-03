@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // Endpoint per la home
 app.get('/', (req, res) => {
-  res.send('Benvenuto nella home!');
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // Endpoint per il form
