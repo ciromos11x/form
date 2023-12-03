@@ -15,23 +15,27 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Puoi inviare i dati del form al server qui
-    fetch('/form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Dati del form inviati con successo:', data);
-      })
-      .catch((error) => {
-        console.error('Errore durante l\'invio dei dati del form:', error);
+  const handleSubmit = async (data) => {
+    try {
+      const response = await fetch('/form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+  
+      if (!response.ok) {
+        throw new Error('Errore durante la richiesta al server');
+      }
+  
+      const result = await response.json();
+      console.log(result); // Verifica la risposta del server
+  
+      // Altri passaggi di gestione della risposta
+    } catch (error) {
+      console.error('Errore durante l\'invio dei dati del form:', error);
+    }
   };
 
   return (

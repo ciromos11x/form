@@ -1,10 +1,13 @@
 // server.js
-
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+
 const app = express();
+app.use(cors());
+app.use(express.json())
 const port = process.env.PORT || 5000;
 
 // Middleware per il parsing del corpo delle richieste
@@ -26,7 +29,7 @@ app.post('/form', (req, res) => {
   const formData = req.body;
   // Puoi fare qualcosa con i dati del form qui
   console.log(formData);
-  res.send('Dati del form ricevuti con successo!');
+  res.json({ success: true, message: 'Dati del form ricevuti con successo!'});
 });
 
 // Configurazione della directory "build" di React
